@@ -47,34 +47,27 @@ vary depending on your environment and project structure.
 
 ### Example task definition
 
-````markdown
-# Verify Build After React Router Updates
-
-## Objective
-
-Install dependencies and ensure the project builds successfully after React and DnD-related updates.
-
-## Steps
-
-1. Install dependencies:
-   ```shell
-   pnpm install
-````
-
-2. Build the project (dev build):
-
-   ```shell
-   pnpm build:dev
-   ```
-3. Fix any trivial or obvious build errors.
-4. If you encounter complex or unclear errors, pause and request guidance.
-
-## Success Condition
-
-* `pnpm install` runs without errors.
-* `pnpm build:dev` completes successfully, or any non-trivial issues are explicitly paused for review.
-
-````
+> # Objective
+>
+> Install dependencies and ensure the project builds successfully after React and DnD-related updates.
+>
+> ## Steps
+>
+> 1. Install dependencies:
+>    ```shell
+>    pnpm install
+>    ````
+> 2. Build the project (dev build):
+>    ```shell
+>    pnpm build:dev
+>    ```
+> 3. Fix any trivial or obvious build errors.
+> 4. If you encounter complex or unclear errors, pause and request guidance.
+>
+> ## Success Condition
+>
+> - `pnpm install` runs without errors.
+> - `pnpm build:dev` completes successfully, or any non-trivial issues are explicitly paused for review.
 
 ### Running CatPilot
 
