@@ -38,7 +38,13 @@ public class WorkflowLauncher(
 
         var workflow = await BuildWorkflow(projectName, projectDir, referencesDir, instructionsDir);
 
-        await RunWorkflow(workflow, tasksDir, startTaskFrom, startSubtaskFrom);
+        await RunWorkflow(
+            workflow,
+            projectName,
+            tasksDir,
+            startTaskFrom,
+            startSubtaskFrom
+        );
     }
 
     private async Task<Workflow> BuildWorkflow(
@@ -83,6 +89,7 @@ public class WorkflowLauncher(
 
     private async Task RunWorkflow(
         Workflow workflow,
+        string projectName,
         string tasksDir,
         int startTaskFrom = 0,
         int startSubtaskFrom = 0
@@ -92,14 +99,17 @@ public class WorkflowLauncher(
             .StreamAsync(workflow, new StartTasks(tasksDir, startTaskFrom, startSubtaskFrom))
             .ConfigureAwait(false);
 
-        _logger.LogInformation("Workflow started successfully.");
+        _logger.LogInformation("[{project}] Workflow started successfully.", projectName);
 
         await foreach (var evt in run.WatchStreamAsync().ConfigureAwait(false))
         {
             switch (evt)
             {
                 case WorkflowOutputEvent e:
-                    _logger.LogInformation("Workflow completed successfully: {output}", e.Data);
+                    _logger.LogInformation(
+                        "[{project}] Workflow completed successfully: {output}",
+                        projectName,
+                        e.Data);
                     break;
                 case WorkflowErrorEvent e:
                     _logger.LogError(e.Data as Exception, "Failed to start the workflow.");
@@ -111,7 +121,11 @@ public class WorkflowLauncher(
                     _logger.LogDebug("Executor completed: {executor}.", e.ExecutorId);
                     break;
                 case ExecutorFailedEvent e:
-                    _logger.LogError(e.Data, "Failed to execute the workflow.");
+                    _logger.LogError(
+                        e.Data,
+                        "[{project}] Failed to execute the workflow.",
+                        projectName
+                    );
                     break;
                 case RequestInfoEvent e:
                     var request = e.Request.Data.AsType(typeof(ConfirmRequest));
@@ -119,7 +133,9 @@ public class WorkflowLauncher(
                     if (request is ConfirmRequest cr)
                     {
                         Console.WriteLine();
-                        Console.Write("[Needs Confirmation]: ");
+                        Console.Write("[Needs Confirmation][");
+                        Console.Write(projectName);
+                        Console.Write("]: ");
                         Console.WriteLine(cr.Text);
                         Console.WriteLine();
                         Console.WriteLine("Do you want to proceed? (Y/N)");
