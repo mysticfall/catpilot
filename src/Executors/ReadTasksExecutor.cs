@@ -3,7 +3,7 @@ using Microsoft.Agents.AI.Workflows.Reflection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
-namespace EDPM37.Executors;
+namespace CatPilot.Executors;
 
 public readonly record struct StartTasks(
     string TasksDir,

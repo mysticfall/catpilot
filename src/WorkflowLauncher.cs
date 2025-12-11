@@ -1,10 +1,10 @@
-using EDPM37.Executors;
+using CatPilot.Executors;
 using Microsoft.Agents.AI.Workflows;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
-namespace EDPM37;
+namespace CatPilot;
 
 public class WorkflowLauncher(
     IChatClient client,

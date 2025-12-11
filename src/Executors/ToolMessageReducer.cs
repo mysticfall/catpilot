@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.AI;
 
-namespace EDPM37.Executors;
+namespace CatPilot.Executors;
 
 [Experimental("MEAI001")]
 public class ToolMessageReducer(int head = 2, int tail = 10) : IChatReducer

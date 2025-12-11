@@ -2,7 +2,7 @@ using HandlebarsDotNet;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
-namespace EDPM37;
+namespace CatPilot;
 
 public static class Utils
 {

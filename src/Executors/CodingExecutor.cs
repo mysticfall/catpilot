@@ -12,7 +12,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 using ModelContextProtocol.Client;
 using OpenAI.Responses;
 
-namespace EDPM37.Executors;
+namespace CatPilot.Executors;
 
 public readonly record struct StartCoding(string PromptPath);
 

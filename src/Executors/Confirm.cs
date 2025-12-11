@@ -1,4 +1,4 @@
-namespace EDPM37.Executors;
+namespace CatPilot.Executors;
 
 public readonly record struct ConfirmRequest(string Text);
 
