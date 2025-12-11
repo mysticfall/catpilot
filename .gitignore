@@ -7,6 +7,11 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/Dotnet.gitignore
 
+# Project
+prompts/system/coding.md
+prompts/tasks
+references
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
@@ -52,3 +57,6 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# IDE
+.idea
