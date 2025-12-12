@@ -250,7 +250,10 @@ public class CodingExecutor(
                 case "confirm":
                     _logger.LogDebug("Requesting user confirmation: {message}", response.Message);
 
-                    await context.SendMessageAsync(new ConfirmRequest(response.Message), cancellationToken);
+                    await context.SendMessageAsync(
+                        new ConfirmRequest($"[{currentTask}] {response.Message}"), 
+                        cancellationToken
+                    );
                     break;
                 default:
                     throw new InvalidOperationException($"Unknown result: \"{response.Result}\"");
